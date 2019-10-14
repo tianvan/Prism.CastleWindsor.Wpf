@@ -6,12 +6,8 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Legacy\" />
-    <Folder Include="Regions\" />
-  </ItemGroup>
-
-  <ItemGroup>
     <PackageReference Include="Castle.Windsor" Version="5.0.1" />
+    <PackageReference Include="CommonServiceLocator" Version="2.0.4" />
     <PackageReference Include="Prism.Wpf" Version="7.2.0.1367" />
   </ItemGroup>
 
