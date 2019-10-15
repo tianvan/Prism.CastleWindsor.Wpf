@@ -6,7 +6,7 @@ using Castle.Windsor;
 
 using CommonServiceLocator;
 
-namespace Prism.CastleWindsor.Wpf
+namespace Prism.CastleWindsor
 {
     public class CastleWinsorServiceLocatorAdapter : ServiceLocatorImplBase
     {

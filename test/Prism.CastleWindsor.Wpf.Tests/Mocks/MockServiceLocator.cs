@@ -5,7 +5,7 @@ using Castle.Windsor;
 
 using CommonServiceLocator;
 
-using Prism.CastleWindsor.Wpf.Regions;
+using Prism.CastleWindsor.Regions;
 using Prism.Regions;
 
 namespace Prism.CastleWindsor.Wpf.Tests.Mocks

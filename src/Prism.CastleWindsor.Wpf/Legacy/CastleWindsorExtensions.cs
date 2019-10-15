@@ -1,9 +1,11 @@
 ﻿using System;
+
 using Castle.MicroKernel.Registration;
 using Castle.Windsor;
+
 using Prism.Mvvm;
 
-namespace Prism.CastleWindsor.Wpf.Legacy
+namespace Prism.CastleWindsor.Legacy
 {
     public static class CastleWindsorExtensions
     {

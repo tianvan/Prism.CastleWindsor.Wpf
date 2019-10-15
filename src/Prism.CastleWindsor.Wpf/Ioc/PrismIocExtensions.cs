@@ -2,7 +2,7 @@
 
 using Prism.Ioc;
 
-namespace Prism.CastleWindsor.Wpf.Ioc
+namespace Prism.CastleWindsor.Ioc
 {
     public static class PrismIocExtensions
     {

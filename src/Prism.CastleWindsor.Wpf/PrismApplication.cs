@@ -1,11 +1,11 @@
 ﻿using CommonServiceLocator;
 
-using Prism.CastleWindsor.Wpf.Ioc;
-using Prism.CastleWindsor.Wpf.Regions;
+using Prism.CastleWindsor.Ioc;
+using Prism.CastleWindsor.Regions;
 using Prism.Ioc;
 using Prism.Regions;
 
-namespace Prism.CastleWindsor.Wpf
+namespace Prism.CastleWindsor
 {
     public abstract class PrismApplication : PrismApplicationBase
     {

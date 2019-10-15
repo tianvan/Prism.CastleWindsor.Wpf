@@ -3,12 +3,35 @@
   <PropertyGroup>
     <TargetFramework>netcoreapp3.0</TargetFramework>
     <UseWPF>true</UseWPF>
+    <PackageId>Prism.CastleWindsor</PackageId>
+    <Version>7.2.0</Version>
+    <Authors>Van Tian</Authors>
+    <Product>(netcore3.0)</Product>
+    <Description>Use these extensions to build Prism applications based on Unity.</Description>
+    <PackageProjectUrl>https://github.com/tianvan/Prism.CastleWindsor.Wpf</PackageProjectUrl>
+    <PackageIconUrl>http://prismlibrary.github.io/images/prism-logo-graphic-128.png</PackageIconUrl>
+    <RepositoryUrl>https://github.com/tianvan/Prism.CastleWindsor.Wpf</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
+    <PackageTags>prism;castle windsor;mvvm;wpf;xaml</PackageTags>
+    <NeutralLanguage>en</NeutralLanguage>
+    <RootNamespace>Prism.CastleWindsor</RootNamespace>
   </PropertyGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Remove="Properties\Resources.resx" />
+  </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="Castle.Windsor" Version="5.0.1" />
     <PackageReference Include="CommonServiceLocator" Version="2.0.4" />
     <PackageReference Include="Prism.Wpf" Version="7.2.0.1367" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </Resource>
   </ItemGroup>
 
 </Project>

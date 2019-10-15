@@ -9,7 +9,7 @@ using CommonServiceLocator;
 
 using Prism.Regions;
 
-namespace Prism.CastleWindsor.Wpf.Regions
+namespace Prism.CastleWindsor.Regions
 {
     public class CastleWinsorRegionNavigationContentLoader : RegionNavigationContentLoader
     {

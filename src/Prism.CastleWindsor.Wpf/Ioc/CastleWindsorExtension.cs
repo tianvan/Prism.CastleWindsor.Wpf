@@ -8,7 +8,7 @@ using Castle.Windsor;
 
 using Prism.Ioc;
 
-namespace Prism.CastleWindsor.Wpf.Ioc
+namespace Prism.CastleWindsor.Ioc
 {
     public class CastleWindsorExtension : IContainerExtension<IWindsorContainer>
     {
