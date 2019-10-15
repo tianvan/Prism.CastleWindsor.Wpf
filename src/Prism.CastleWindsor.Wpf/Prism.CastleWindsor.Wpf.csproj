@@ -18,20 +18,9 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <EmbeddedResource Remove="Properties\Resources.resx" />
-  </ItemGroup>
-
-  <ItemGroup>
     <PackageReference Include="Castle.Windsor" Version="5.0.1" />
     <PackageReference Include="CommonServiceLocator" Version="2.0.4" />
     <PackageReference Include="Prism.Wpf" Version="7.2.0.1367" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Resource Include="Properties\Resources.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
-    </Resource>
   </ItemGroup>
 
   <ItemGroup>
@@ -40,6 +29,13 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Update="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
   </ItemGroup>
 
 </Project>
