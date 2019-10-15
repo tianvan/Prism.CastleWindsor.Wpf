@@ -61,7 +61,7 @@ namespace Prism.CastleWindsor.Properties {
         }
         
         /// <summary>
-        ///   查找类似 Adding UnityBootstrapperExtension to container. 的本地化字符串。
+        ///   查找类似 Adding CastleWindsorBootstrapperExtension to container. 的本地化字符串。
         /// </summary>
         internal static string AddingUnityBootstrapperExtensionToContainer {
             get {
@@ -124,7 +124,7 @@ namespace Prism.CastleWindsor.Properties {
         }
         
         /// <summary>
-        ///   查找类似 Configuring the ViewModelLocator to use Unity. 的本地化字符串。
+        ///   查找类似 Configuring the ViewModelLocator to use Castle Windsor. 的本地化字符串。
         /// </summary>
         internal static string ConfiguringViewModelLocator {
             get {
@@ -151,7 +151,7 @@ namespace Prism.CastleWindsor.Properties {
         }
         
         /// <summary>
-        ///   查找类似 Creating Unity container. 的本地化字符串。
+        ///   查找类似 Creating Castle Windsor container. 的本地化字符串。
         /// </summary>
         internal static string CreatingUnityContainer {
             get {
@@ -214,7 +214,7 @@ namespace Prism.CastleWindsor.Properties {
         }
         
         /// <summary>
-        ///   查找类似 The IUnityContainer is required and cannot be null. 的本地化字符串。
+        ///   查找类似 The IWindsorContainer is required and cannot be null. 的本地化字符串。
         /// </summary>
         internal static string NullUnityContainerException {
             get {

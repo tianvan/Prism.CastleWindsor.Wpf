@@ -1,7 +1,8 @@
 ﻿using System;
 using System.Globalization;
 
-using Castle.MicroKernel.Resolvers;
+using Castle.MicroKernel;
+using Castle.MicroKernel.Registration;
 using Castle.Windsor;
 
 using CommonServiceLocator;
@@ -106,8 +107,10 @@ namespace Prism.CastleWindsor.Legacy
         {
             base.RegisterFrameworkExceptionTypes();
 
-            ExceptionExtensions.RegisterFrameworkExceptionType(
-                typeof(DependencyResolverException));
+            ExceptionExtensions.RegisterFrameworkExceptionType(typeof(ComponentResolutionException));
+            ExceptionExtensions.RegisterFrameworkExceptionType(typeof(ComponentNotFoundException));
+            ExceptionExtensions.RegisterFrameworkExceptionType(typeof(ComponentRegistrationException));
+            ExceptionExtensions.RegisterFrameworkExceptionType(typeof(CircularDependencyException));
         }
 
         protected virtual void ConfigureContainer()
@@ -147,7 +150,7 @@ namespace Prism.CastleWindsor.Legacy
             {
                 manager = Container.Resolve<IModuleManager>();
             }
-            catch (DependencyResolverException ex)
+            catch (ComponentNotFoundException ex)
             {
                 if (ex.Message.Contains("IModuleCatalog"))
                 {
@@ -162,7 +165,10 @@ namespace Prism.CastleWindsor.Legacy
 
         protected virtual IWindsorContainer CreateContainer()
         {
-            return new WindsorContainer();
+            var container = new WindsorContainer();
+            container.Register(Component.For<IWindsorContainer>().Instance(container));
+
+            return container;
         }
 
         protected override IContainerExtension CreateContainerExtension()
