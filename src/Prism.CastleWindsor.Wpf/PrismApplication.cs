@@ -1,4 +1,5 @@
 ﻿using CommonServiceLocator;
+
 using Prism.CastleWindsor.Wpf.Ioc;
 using Prism.CastleWindsor.Wpf.Regions;
 using Prism.Ioc;

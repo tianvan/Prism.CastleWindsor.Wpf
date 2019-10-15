@@ -7,7 +7,9 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{C5698EFD-C2E
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "test", "test", "{C74F859A-4280-445B-8F8C-DB69A8B5F98B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Prism.CastleWindsor.Wpf", "src\Prism.CastleWindsor.Wpf\Prism.CastleWindsor.Wpf.csproj", "{40AE51A1-846B-4BBC-B43E-AEE9E095AD95}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Prism.CastleWindsor.Wpf", "src\Prism.CastleWindsor.Wpf\Prism.CastleWindsor.Wpf.csproj", "{40AE51A1-846B-4BBC-B43E-AEE9E095AD95}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Prism.CastleWindsor.Wpf.Tests", "test\Prism.CastleWindsor.Wpf.Tests\Prism.CastleWindsor.Wpf.Tests.csproj", "{DD1A15FE-CBAF-4459-87DB-D81829A07583}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -19,12 +21,17 @@ Global
 		{40AE51A1-846B-4BBC-B43E-AEE9E095AD95}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{40AE51A1-846B-4BBC-B43E-AEE9E095AD95}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{40AE51A1-846B-4BBC-B43E-AEE9E095AD95}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DD1A15FE-CBAF-4459-87DB-D81829A07583}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DD1A15FE-CBAF-4459-87DB-D81829A07583}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DD1A15FE-CBAF-4459-87DB-D81829A07583}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DD1A15FE-CBAF-4459-87DB-D81829A07583}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{40AE51A1-846B-4BBC-B43E-AEE9E095AD95} = {C5698EFD-C2E8-42D2-B35D-41B06AA34581}
+		{DD1A15FE-CBAF-4459-87DB-D81829A07583} = {C74F859A-4280-445B-8F8C-DB69A8B5F98B}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {A66F409D-116B-42D8-909A-946D2F10B272}
