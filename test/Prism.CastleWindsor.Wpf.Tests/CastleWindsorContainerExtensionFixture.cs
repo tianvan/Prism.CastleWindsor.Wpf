@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using Castle.MicroKernel.Registration;
 using Castle.Windsor;
 
+using Prism.CastleWindsor.Ioc;
 using Prism.IocContainer.Wpf.Tests.Support.Mocks;
 
 using Xunit;
@@ -16,19 +17,20 @@ namespace Prism.CastleWindsor.Wpf.Tests
         public void ExtensionReturnsTrueIfThereIsAPolicyForType()
         {
             var container = new WindsorContainer();
+            var containerExtension = new CastleWindsorExtension(container);
 
             container.Register(Component.For<object>().ImplementedBy<string>());
 
-            Assert.True(container.IsTypeRegistered(typeof(object)));
-            Assert.False(container.IsTypeRegistered(typeof(int)));
+            Assert.True(containerExtension.IsRegistered(typeof(object)));
+            Assert.False(containerExtension.IsRegistered(typeof(int)));
 
             container.Register(Component.For<IList<int>>().ImplementedBy<List<int>>());
 
-            Assert.True(container.IsTypeRegistered(typeof(IList<int>)));
-            Assert.False(container.IsTypeRegistered(typeof(IList<string>)));
+            Assert.True(containerExtension.IsRegistered(typeof(IList<int>)));
+            Assert.False(containerExtension.IsRegistered(typeof(IList<string>)));
 
-            container.RegisterType(typeof(IDictionary<,>), typeof(Dictionary<,>));
-            Assert.True(container.IsTypeRegistered(typeof(IDictionary<,>)));
+            container.Register(Component.For(typeof(IDictionary<,>)).ImplementedBy(typeof(Dictionary<,>)));
+            Assert.True(containerExtension.IsRegistered(typeof(IDictionary<,>)));
         }
 
         [Fact]

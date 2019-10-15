@@ -226,7 +226,7 @@ namespace Prism.CastleWindsor.Wpf.Tests
 
             bootstrapper.Run();
 
-            mockedContainer.Verify(c => c.RegisterType(typeof(IServiceLocator), typeof(UnityServiceLocatorAdapter), null, It.IsAny<ITypeLifetimeManager>()), Times.Once());
+            mockedContainer.Verify(c => c.Register(Component.For<IServiceLocator>().ImplementedBy<CastleWinsorServiceLocatorAdapter>()), Times.Once());
         }
 
         [StaFact]
@@ -239,7 +239,7 @@ namespace Prism.CastleWindsor.Wpf.Tests
 
             bootstrapper.Run();
 
-            mockedContainer.Verify(c => c.RegisterType(typeof(IModuleInitializer), It.IsAny<Type>(), null, It.IsAny<ITypeLifetimeManager>()), Times.Once());
+            mockedContainer.Verify(c => c.Register(Component.For<IModuleInitializer>().ImplementedBy(It.IsAny<Type>())), Times.Once());
         }
 
         [StaFact]
@@ -252,7 +252,7 @@ namespace Prism.CastleWindsor.Wpf.Tests
 
             bootstrapper.Run();
 
-            mockedContainer.Verify(c => c.RegisterType(typeof(IRegionManager), It.IsAny<Type>(), null, It.IsAny<ITypeLifetimeManager>()), Times.Once());
+            mockedContainer.Verify(c => c.Register(Component.For<IRegionManager>().ImplementedBy(It.IsAny<Type>())), Times.Once());
         }
 
         [StaFact]
@@ -265,7 +265,7 @@ namespace Prism.CastleWindsor.Wpf.Tests
 
             bootstrapper.Run();
 
-            mockedContainer.Verify(c => c.RegisterType(typeof(RegionAdapterMappings), It.IsAny<Type>(), null, It.IsAny<ITypeLifetimeManager>()), Times.Once());
+            mockedContainer.Verify(c => c.Register(Component.For<RegionAdapterMappings>().ImplementedBy(It.IsAny<Type>())), Times.Once());
         }
 
         [StaFact]
@@ -278,7 +278,7 @@ namespace Prism.CastleWindsor.Wpf.Tests
 
             bootstrapper.Run();
 
-            mockedContainer.Verify(c => c.RegisterType(typeof(IRegionViewRegistry), It.IsAny<Type>(), null, It.IsAny<ITypeLifetimeManager>()), Times.Once());
+            mockedContainer.Verify(c => c.Register(Component.For<IRegionViewRegistry>().ImplementedBy(It.IsAny<Type>())), Times.Once());
         }
 
         [StaFact]
@@ -291,7 +291,7 @@ namespace Prism.CastleWindsor.Wpf.Tests
 
             bootstrapper.Run();
 
-            mockedContainer.Verify(c => c.RegisterType(typeof(IRegionBehaviorFactory), It.IsAny<Type>(), null, It.IsAny<ITypeLifetimeManager>()), Times.Once());
+            mockedContainer.Verify(c => c.Register(Component.For<IRegionBehaviorFactory>().ImplementedBy(It.IsAny<Type>())), Times.Once());
         }
 
         [StaFact]
@@ -304,7 +304,7 @@ namespace Prism.CastleWindsor.Wpf.Tests
 
             bootstrapper.Run();
 
-            mockedContainer.Verify(c => c.RegisterType(typeof(IEventAggregator), It.IsAny<Type>(), null, It.IsAny<ITypeLifetimeManager>()), Times.Once());
+            mockedContainer.Verify(c => c.Register(Component.For<IEventAggregator>().ImplementedBy(It.IsAny<Type>())), Times.Once());
         }
 
         [StaFact]
@@ -315,12 +315,11 @@ namespace Prism.CastleWindsor.Wpf.Tests
 
             var bootstrapper = new MockedContainerBootstrapper(mockedContainer.Object);
             bootstrapper.Run(false);
-
-            mockedContainer.Verify(c => c.RegisterType(typeof(IEventAggregator), It.IsAny<Type>(), null, It.IsAny<ITypeLifetimeManager>()), Times.Never());
-            mockedContainer.Verify(c => c.RegisterType(typeof(IRegionManager), It.IsAny<Type>(), null, It.IsAny<ITypeLifetimeManager>()), Times.Never());
-            mockedContainer.Verify(c => c.RegisterType(typeof(RegionAdapterMappings), It.IsAny<Type>(), null, It.IsAny<ITypeLifetimeManager>()), Times.Never());
-            mockedContainer.Verify(c => c.RegisterType(typeof(IServiceLocator), It.IsAny<Type>(), null, It.IsAny<ITypeLifetimeManager>()), Times.Never());
-            mockedContainer.Verify(c => c.RegisterType(typeof(IModuleInitializer), It.IsAny<Type>(), null, It.IsAny<ITypeLifetimeManager>()), Times.Never());
+            mockedContainer.Verify(c => c.Register(Component.For<IEventAggregator>().ImplementedBy(It.IsAny<Type>())), Times.Never());
+            mockedContainer.Verify(c => c.Register(Component.For<IRegionManager>().ImplementedBy(It.IsAny<Type>())), Times.Never());
+            mockedContainer.Verify(c => c.Register(Component.For<RegionAdapterMappings>().ImplementedBy(It.IsAny<Type>())), Times.Never());
+            mockedContainer.Verify(c => c.Register(Component.For<IServiceLocator>().ImplementedBy(It.IsAny<Type>())), Times.Never());
+            mockedContainer.Verify(c => c.Register(Component.For<IModuleInitializer>().ImplementedBy(It.IsAny<Type>())), Times.Never());
         }
 
         [StaFact]
@@ -337,19 +336,19 @@ namespace Prism.CastleWindsor.Wpf.Tests
 
             container.Register(Component.For<IServiceLocator>().Instance(serviceLocatorAdapter));
             container.Register(Component.For<IModuleCatalog>().Instance(new ModuleCatalog()));
-            container.RegisterInstance<IModuleInitializer>(mockedModuleInitializer.Object);
-            container.RegisterInstance<IModuleManager>(mockedModuleManager.Object);
-            container.RegisterInstance<RegionAdapterMappings>(regionAdapterMappings);
+            container.Register(Component.For<IModuleInitializer>().Instance(mockedModuleInitializer.Object));
+            container.Register(Component.For<IModuleManager>().Instance(mockedModuleManager.Object));
+            container.Register(Component.For<RegionAdapterMappings>().Instance(regionAdapterMappings));
 
-            container.RegisterSingleton(typeof(RegionAdapterMappings), typeof(RegionAdapterMappings));
-            container.RegisterSingleton(typeof(IRegionManager), typeof(RegionManager));
-            container.RegisterSingleton(typeof(IEventAggregator), typeof(EventAggregator));
-            container.RegisterSingleton(typeof(IRegionViewRegistry), typeof(RegionViewRegistry));
-            container.RegisterSingleton(typeof(IRegionBehaviorFactory), typeof(RegionBehaviorFactory));
-            container.RegisterSingleton(typeof(IRegionNavigationJournalEntry), typeof(RegionNavigationJournalEntry));
-            container.RegisterSingleton(typeof(IRegionNavigationJournal), typeof(RegionNavigationJournal));
-            container.RegisterSingleton(typeof(IRegionNavigationService), typeof(RegionNavigationService));
-            container.RegisterSingleton(typeof(IRegionNavigationContentLoader), typeof(Regions.CastleWinsorRegionNavigationContentLoader));
+            container.Register(Component.For(typeof(RegionAdapterMappings)).ImplementedBy(typeof(RegionAdapterMappings)).LifestyleSingleton());
+            container.Register(Component.For<IRegionManager>().ImplementedBy<RegionManager>().LifestyleSingleton());
+            container.Register(Component.For<IEventAggregator>().ImplementedBy<EventAggregator>().LifestyleSingleton());
+            container.Register(Component.For<IRegionViewRegistry>().ImplementedBy<RegionViewRegistry>().LifestyleSingleton());
+            container.Register(Component.For<IRegionBehaviorFactory>().ImplementedBy<RegionBehaviorFactory>().LifestyleSingleton());
+            container.Register(Component.For<IRegionNavigationJournal>().ImplementedBy<RegionNavigationJournal>().LifestyleSingleton());
+            container.Register(Component.For<IRegionNavigationJournalEntry>().ImplementedBy<RegionNavigationJournalEntry>().LifestyleSingleton());
+            container.Register(Component.For<IRegionNavigationService>().ImplementedBy<RegionNavigationService>().LifestyleSingleton());
+            container.Register(Component.For<IRegionNavigationContentLoader>().ImplementedBy<RegionNavigationContentLoader>().LifestyleSingleton());
 
             container.Register(Component.For<SelectorRegionAdapter>().Instance(new SelectorRegionAdapter(regionBehaviorFactory)));
             container.Register(Component.For<ItemsControlRegionAdapter>().Instance(new ItemsControlRegionAdapter(regionBehaviorFactory)));
