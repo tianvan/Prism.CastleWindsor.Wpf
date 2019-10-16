@@ -20,6 +20,9 @@ namespace Prism.CastleWindsor.Ioc
 
         public CastleWindsorExtension(IWindsorContainer container)
         {
+            container.Register(Component.For<IWindsorContainer>().Instance(container));
+            //container.Register(Component.For<IContainerExtension>().Instance(this));
+
             Instance = container;
         }
 
@@ -42,8 +45,15 @@ namespace Prism.CastleWindsor.Ioc
 
         public bool IsRegistered(Type type, string name)
         {
-            var instance = Instance.Resolve(name, type);
-            return instance != null;
+            try
+            {
+                var instance = Instance.Resolve(name, type);
+                return true;
+            }
+            catch (ComponentNotFoundException)
+            {
+                return false;
+            }
         }
 
         public IContainerRegistry Register(Type from, Type to)
@@ -84,14 +94,32 @@ namespace Prism.CastleWindsor.Ioc
 
         public object Resolve(Type type)
         {
-            return Instance.Resolve(type);
+            try
+            {
+                return Instance.Resolve(type);
+            }
+            catch (ComponentNotFoundException)
+            {
+                Instance.Register(Component.For(type).LifestyleTransient());
+                return Instance.Resolve(type);
+            }
         }
 
         public object Resolve(Type type, params (Type Type, object Instance)[] parameters)
         {
             Arguments arguments = ConvertToArguments(parameters);
 
-            return Instance.Resolve(type, arguments);
+            try
+            {
+
+                return Instance.Resolve(type, arguments);
+            }
+            catch (ComponentNotFoundException)
+            {
+                Instance.Register(Component.For(type).LifestyleTransient().DependsOn(arguments));
+
+                return Instance.Resolve(type, arguments);
+            }
         }
 
         private static Arguments ConvertToArguments((Type Type, object Instance)[] parameters)
@@ -107,12 +135,33 @@ namespace Prism.CastleWindsor.Ioc
 
         public object Resolve(Type type, string name)
         {
-            return Instance.Resolve(name, type);
+            try
+            {
+
+                return Instance.Resolve(name, type);
+            }
+            catch (ComponentNotFoundException)
+            {
+                Instance.Register(Component.For(type).Named(name).LifestyleTransient());
+                return Instance.Resolve(name, type);
+            }
         }
 
         public object Resolve(Type type, string name, params (Type Type, object Instance)[] parameters)
         {
-            return Instance.Resolve(name, type, ConvertToArguments(parameters));
+            Arguments arguments = ConvertToArguments(parameters);
+
+            try
+            {
+
+                return Instance.Resolve(name, type, arguments);
+            }
+            catch (ComponentNotFoundException)
+            {
+                Instance.Register(Component.For(type).Named(name).LifestyleTransient().DependsOn(arguments));
+
+                return Instance.Resolve(name, type, arguments);
+            }
         }
     }
 }

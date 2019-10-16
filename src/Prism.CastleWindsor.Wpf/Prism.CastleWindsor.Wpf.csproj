@@ -4,7 +4,7 @@
     <TargetFramework>netcoreapp3.0</TargetFramework>
     <UseWPF>true</UseWPF>
     <PackageId>Prism.CastleWindsor</PackageId>
-    <Version>7.2.0</Version>
+    <Version>7.2.2</Version>
     <Authors>Van Tian</Authors>
     <Product>(netcore3.0)</Product>
     <Description>Use these extensions to build Prism applications based on Unity.</Description>

@@ -1,7 +1,10 @@
-﻿using CommonServiceLocator;
+﻿using System;
+
+using Castle.MicroKernel;
+
+using CommonServiceLocator;
 
 using Prism.CastleWindsor.Ioc;
-using Prism.CastleWindsor.Regions;
 using Prism.Ioc;
 using Prism.Regions;
 
@@ -18,8 +21,18 @@ namespace Prism.CastleWindsor
         {
             base.RegisterRequiredTypes(containerRegistry);
 
-            containerRegistry.RegisterSingleton<IRegionNavigationContentLoader, CastleWinsorRegionNavigationContentLoader>();
-            containerRegistry.RegisterSingleton<IServiceLocator, CastleWinsorServiceLocatorAdapter>();
+            containerRegistry.RegisterSingleton<IRegionNavigationContentLoader, RegionNavigationContentLoader>();
+            containerRegistry.RegisterSingleton<IServiceLocator, CastleWindsorServiceLocatorAdapter>();
+        }
+
+        protected override void RegisterFrameworkExceptionTypes()
+        {
+            base.RegisterFrameworkExceptionTypes();
+
+            ExceptionExtensions.RegisterFrameworkExceptionType(typeof(ComponentResolutionException));
+            ExceptionExtensions.RegisterFrameworkExceptionType(typeof(ComponentNotFoundException));
+            ExceptionExtensions.RegisterFrameworkExceptionType(typeof(ComponentRegistrationException));
+            ExceptionExtensions.RegisterFrameworkExceptionType(typeof(CircularDependencyException));
         }
     }
 }
