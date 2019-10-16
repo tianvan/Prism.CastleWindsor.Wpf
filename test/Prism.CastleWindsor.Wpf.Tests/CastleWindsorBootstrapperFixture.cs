@@ -27,7 +27,7 @@ namespace Prism.CastleWindsor.Wpf.Tests
         [StaFact]
         public void ContainerDefaultsToNull()
         {
-            var bootstrapper = new DefaultUnityBootstrapper();
+            var bootstrapper = new DefaultCastleWindsorBootstrapper();
             IWindsorContainer container = bootstrapper.BaseContainer;
 
             Assert.Null(container);
@@ -36,13 +36,13 @@ namespace Prism.CastleWindsor.Wpf.Tests
         [StaFact]
         public void CanCreateConcreteBootstrapper()
         {
-            new DefaultUnityBootstrapper();
+            new DefaultCastleWindsorBootstrapper();
         }
 
         [StaFact]
         public void CreateContainerShouldInitializeContainer()
         {
-            var bootstrapper = new DefaultUnityBootstrapper();
+            var bootstrapper = new DefaultCastleWindsorBootstrapper();
 
             IWindsorContainer container = bootstrapper.CallCreateContainer();
 
@@ -53,7 +53,7 @@ namespace Prism.CastleWindsor.Wpf.Tests
         [StaFact]
         public void ConfigureContainerAddsModuleCatalogToContainer()
         {
-            var bootstrapper = new DefaultUnityBootstrapper();
+            var bootstrapper = new DefaultCastleWindsorBootstrapper();
             bootstrapper.Run();
 
             IModuleCatalog returnedCatalog = bootstrapper.BaseContainer.Resolve<IModuleCatalog>();
@@ -64,7 +64,7 @@ namespace Prism.CastleWindsor.Wpf.Tests
         [StaFact]
         public void ConfigureContainerAddsLoggerFacadeToContainer()
         {
-            var bootstrapper = new DefaultUnityBootstrapper();
+            var bootstrapper = new DefaultCastleWindsorBootstrapper();
             bootstrapper.Run();
 
             ILoggerFacade returnedCatalog = bootstrapper.BaseContainer.Resolve<ILoggerFacade>();
@@ -74,7 +74,7 @@ namespace Prism.CastleWindsor.Wpf.Tests
         [StaFact]
         public void ConfigureContainerAddsRegionNavigationJournalEntryToContainer()
         {
-            var bootstrapper = new DefaultUnityBootstrapper();
+            var bootstrapper = new DefaultCastleWindsorBootstrapper();
             bootstrapper.Run();
 
             IRegionNavigationJournalEntry actual1 = bootstrapper.BaseContainer.Resolve<IRegionNavigationJournalEntry>();
@@ -88,7 +88,7 @@ namespace Prism.CastleWindsor.Wpf.Tests
         [StaFact]
         public void ConfigureContainerAddsRegionNavigationJournalToContainer()
         {
-            var bootstrapper = new DefaultUnityBootstrapper();
+            var bootstrapper = new DefaultCastleWindsorBootstrapper();
             bootstrapper.Run();
 
             IRegionNavigationJournal actual1 = bootstrapper.BaseContainer.Resolve<IRegionNavigationJournal>();
@@ -102,7 +102,7 @@ namespace Prism.CastleWindsor.Wpf.Tests
         [StaFact]
         public void ConfigureContainerAddsRegionNavigationServiceToContainer()
         {
-            var bootstrapper = new DefaultUnityBootstrapper();
+            var bootstrapper = new DefaultCastleWindsorBootstrapper();
             bootstrapper.Run();
 
             IRegionNavigationService actual1 = bootstrapper.BaseContainer.Resolve<IRegionNavigationService>();
@@ -116,7 +116,7 @@ namespace Prism.CastleWindsor.Wpf.Tests
         [StaFact]
         public void ConfigureContainerAddsNavigationTargetHandlerToContainer()
         {
-            var bootstrapper = new DefaultUnityBootstrapper();
+            var bootstrapper = new DefaultCastleWindsorBootstrapper();
             bootstrapper.Run();
 
             IRegionNavigationContentLoader actual1 = bootstrapper.BaseContainer.Resolve<IRegionNavigationContentLoader>();
@@ -130,7 +130,7 @@ namespace Prism.CastleWindsor.Wpf.Tests
         [StaFact]
         public void RegisterFrameworkExceptionTypesShouldRegisterActivationException()
         {
-            var bootstrapper = new DefaultUnityBootstrapper();
+            var bootstrapper = new DefaultCastleWindsorBootstrapper();
 
             bootstrapper.CallRegisterFrameworkExceptionTypes();
 
@@ -141,7 +141,7 @@ namespace Prism.CastleWindsor.Wpf.Tests
         [StaFact]
         public void RegisterFrameworkExceptionTypesShouldRegisterResolutionFailedException()
         {
-            var bootstrapper = new DefaultUnityBootstrapper();
+            var bootstrapper = new DefaultCastleWindsorBootstrapper();
 
             bootstrapper.CallRegisterFrameworkExceptionTypes();
 
@@ -156,7 +156,7 @@ namespace Prism.CastleWindsor.Wpf.Tests
         }
     }
 
-    internal class DefaultUnityBootstrapper : CastleWindsorBootstrapper
+    internal class DefaultCastleWindsorBootstrapper : CastleWindsorBootstrapper
     {
         public List<string> MethodCalls = new List<string>();
         public bool InitializeModulesCalled;

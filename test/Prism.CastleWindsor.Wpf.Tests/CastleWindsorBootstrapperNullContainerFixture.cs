@@ -18,7 +18,7 @@ namespace Prism.CastleWindsor.Wpf.Tests
         {
             var bootstrapper = new NullContainerBootstrapper();
 
-            AssertExceptionThrownOnRun(bootstrapper, typeof(InvalidOperationException), "IWindsortainer");
+            AssertExceptionThrownOnRun(bootstrapper, typeof(InvalidOperationException), nameof(IWindsorContainer));
         }
 
         private class NullContainerBootstrapper : CastleWindsorBootstrapper

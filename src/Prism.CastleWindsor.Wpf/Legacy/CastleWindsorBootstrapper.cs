@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Globalization;
-
+using System.Windows.Controls;
+using System.Windows.Controls.Primitives;
 using Castle.MicroKernel;
 using Castle.MicroKernel.Registration;
 using Castle.Windsor;
@@ -186,7 +187,7 @@ namespace Prism.CastleWindsor.Legacy
             {
                 throw new ArgumentNullException(nameof(toType));
             }
-            if (ContainerExtension.IsRegistered(fromType))
+            if (IsRegistered(fromType))
             {
                 Logger.Log(
                     string.Format(CultureInfo.CurrentCulture,
@@ -197,13 +198,38 @@ namespace Prism.CastleWindsor.Legacy
             {
                 if (registerAsSingleton)
                 {
-                    ContainerExtension.RegisterSingleton(fromType, toType);
+                    Container.Register(Component.For(fromType).ImplementedBy(toType).LifestyleSingleton());
                 }
                 else
                 {
-                    ContainerExtension.Register(fromType, toType);
+                    Container.Register(Component.For(fromType).ImplementedBy(toType));
                 }
             }
+        }
+
+        protected virtual bool IsRegistered(Type fromType)
+        {
+            try
+            {
+                Container.Resolve(fromType);
+                return true;
+            }
+            catch (Exception)
+            {
+                return false;
+            }
+        }
+
+        protected override RegionAdapterMappings ConfigureRegionAdapterMappings()
+        {
+            RegionAdapterMappings instance = ServiceLocator.Current.GetInstance<RegionAdapterMappings>();
+            if (instance != null)
+            {
+                instance.RegisterMapping(typeof(Selector), ServiceLocator.Current.GetInstance<SelectorRegionAdapter>());
+                instance.RegisterMapping(typeof(ItemsControl), ServiceLocator.Current.GetInstance<ItemsControlRegionAdapter>());
+                instance.RegisterMapping(typeof(ContentControl), ServiceLocator.Current.GetInstance<ContentControlRegionAdapter>());
+            }
+            return instance;
         }
     }
 }

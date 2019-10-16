@@ -25,21 +25,21 @@ namespace Prism.CastleWindsor.Wpf.Tests
         [StaFact]
         public void CanRunBootstrapper()
         {
-            var bootstrapper = new DefaultUnityBootstrapper();
+            var bootstrapper = new DefaultCastleWindsorBootstrapper();
             bootstrapper.Run();
         }
 
         [StaFact]
         public void RunShouldNotFailIfReturnedNullShell()
         {
-            var bootstrapper = new DefaultUnityBootstrapper { ShellObject = null };
+            var bootstrapper = new DefaultCastleWindsorBootstrapper { ShellObject = null };
             bootstrapper.Run();
         }
 
         [StaFact]
         public void RunConfiguresServiceLocatorProvider()
         {
-            var bootstrapper = new DefaultUnityBootstrapper();
+            var bootstrapper = new DefaultCastleWindsorBootstrapper();
             bootstrapper.Run();
 
             Assert.True(ServiceLocator.Current is CastleWinsorServiceLocatorAdapter);
@@ -48,7 +48,7 @@ namespace Prism.CastleWindsor.Wpf.Tests
         [StaFact]
         public void RunShouldInitializeContainer()
         {
-            var bootstrapper = new DefaultUnityBootstrapper();
+            var bootstrapper = new DefaultCastleWindsorBootstrapper();
             IWindsorContainer container = bootstrapper.BaseContainer;
 
             Assert.Null(container);
@@ -64,7 +64,7 @@ namespace Prism.CastleWindsor.Wpf.Tests
         [StaFact]
         public void RunAddsCompositionContainerToContainer()
         {
-            var bootstrapper = new DefaultUnityBootstrapper();
+            var bootstrapper = new DefaultCastleWindsorBootstrapper();
 
             IWindsorContainer createdContainer = bootstrapper.CallCreateContainer();
             IWindsorContainer returnedContainer = createdContainer.Resolve<IWindsorContainer>();
@@ -75,7 +75,7 @@ namespace Prism.CastleWindsor.Wpf.Tests
         [StaFact]
         public void RunShouldCallInitializeModules()
         {
-            var bootstrapper = new DefaultUnityBootstrapper();
+            var bootstrapper = new DefaultCastleWindsorBootstrapper();
             bootstrapper.Run();
 
             Assert.True(bootstrapper.InitializeModulesCalled);
@@ -84,7 +84,7 @@ namespace Prism.CastleWindsor.Wpf.Tests
         [StaFact]
         public void RunShouldCallConfigureDefaultRegionBehaviors()
         {
-            var bootstrapper = new DefaultUnityBootstrapper();
+            var bootstrapper = new DefaultCastleWindsorBootstrapper();
 
             bootstrapper.Run();
 
@@ -94,7 +94,7 @@ namespace Prism.CastleWindsor.Wpf.Tests
         [StaFact]
         public void RunShouldCallConfigureRegionAdapterMappings()
         {
-            var bootstrapper = new DefaultUnityBootstrapper();
+            var bootstrapper = new DefaultCastleWindsorBootstrapper();
 
             bootstrapper.Run();
 
@@ -104,7 +104,7 @@ namespace Prism.CastleWindsor.Wpf.Tests
         [StaFact]
         public void RunShouldAssignRegionManagerToReturnedShell()
         {
-            var bootstrapper = new DefaultUnityBootstrapper();
+            var bootstrapper = new DefaultCastleWindsorBootstrapper();
 
             bootstrapper.Run();
 
@@ -114,7 +114,7 @@ namespace Prism.CastleWindsor.Wpf.Tests
         [StaFact]
         public void RunShouldCallCreateLogger()
         {
-            var bootstrapper = new DefaultUnityBootstrapper();
+            var bootstrapper = new DefaultCastleWindsorBootstrapper();
 
             bootstrapper.Run();
 
@@ -124,7 +124,7 @@ namespace Prism.CastleWindsor.Wpf.Tests
         [StaFact]
         public void RunShouldCallCreateModuleCatalog()
         {
-            var bootstrapper = new DefaultUnityBootstrapper();
+            var bootstrapper = new DefaultCastleWindsorBootstrapper();
 
             bootstrapper.Run();
 
@@ -134,7 +134,7 @@ namespace Prism.CastleWindsor.Wpf.Tests
         [StaFact]
         public void RunShouldCallConfigureModuleCatalog()
         {
-            var bootstrapper = new DefaultUnityBootstrapper();
+            var bootstrapper = new DefaultCastleWindsorBootstrapper();
 
             bootstrapper.Run();
 
@@ -144,7 +144,7 @@ namespace Prism.CastleWindsor.Wpf.Tests
         [StaFact]
         public void RunShouldCallCreateContainer()
         {
-            var bootstrapper = new DefaultUnityBootstrapper();
+            var bootstrapper = new DefaultCastleWindsorBootstrapper();
 
             bootstrapper.Run();
 
@@ -154,7 +154,7 @@ namespace Prism.CastleWindsor.Wpf.Tests
         [StaFact]
         public void RunShouldCallCreateShell()
         {
-            var bootstrapper = new DefaultUnityBootstrapper();
+            var bootstrapper = new DefaultCastleWindsorBootstrapper();
 
             bootstrapper.Run();
 
@@ -164,7 +164,7 @@ namespace Prism.CastleWindsor.Wpf.Tests
         [StaFact]
         public void RunShouldCallConfigureContainer()
         {
-            var bootstrapper = new DefaultUnityBootstrapper();
+            var bootstrapper = new DefaultCastleWindsorBootstrapper();
 
             bootstrapper.Run();
 
@@ -174,7 +174,7 @@ namespace Prism.CastleWindsor.Wpf.Tests
         [StaFact]
         public void RunShouldCallConfigureServiceLocator()
         {
-            var bootstrapper = new DefaultUnityBootstrapper();
+            var bootstrapper = new DefaultCastleWindsorBootstrapper();
 
             bootstrapper.Run();
 
@@ -184,7 +184,7 @@ namespace Prism.CastleWindsor.Wpf.Tests
         [StaFact]
         public void RunShouldCallConfigureViewModelLocator()
         {
-            var bootstrapper = new DefaultUnityBootstrapper();
+            var bootstrapper = new DefaultCastleWindsorBootstrapper();
 
             bootstrapper.Run();
 
@@ -363,7 +363,7 @@ namespace Prism.CastleWindsor.Wpf.Tests
         [StaFact]
         public void RunShouldCallTheMethodsInOrder()
         {
-            var bootstrapper = new DefaultUnityBootstrapper();
+            var bootstrapper = new DefaultCastleWindsorBootstrapper();
             bootstrapper.Run();
 
             Assert.Equal("CreateLogger", bootstrapper.MethodCalls[0]);
@@ -384,7 +384,7 @@ namespace Prism.CastleWindsor.Wpf.Tests
         [StaFact]
         public void RunShouldLogBootstrapperSteps()
         {
-            var bootstrapper = new DefaultUnityBootstrapper();
+            var bootstrapper = new DefaultCastleWindsorBootstrapper();
             bootstrapper.Run();
             System.Collections.Generic.IList<string> messages = bootstrapper.BaseLogger.Messages;
 
@@ -411,7 +411,7 @@ namespace Prism.CastleWindsor.Wpf.Tests
         public void RunShouldLogLoggerCreationSuccess()
         {
             const string ExpectedMessageText = "Logger was created successfully.";
-            var bootstrapper = new DefaultUnityBootstrapper();
+            var bootstrapper = new DefaultCastleWindsorBootstrapper();
             bootstrapper.Run();
             System.Collections.Generic.IList<string> messages = bootstrapper.BaseLogger.Messages;
 
@@ -421,7 +421,7 @@ namespace Prism.CastleWindsor.Wpf.Tests
         public void RunShouldLogAboutModuleCatalogCreation()
         {
             const string ExpectedMessageText = "Creating module catalog.";
-            var bootstrapper = new DefaultUnityBootstrapper();
+            var bootstrapper = new DefaultCastleWindsorBootstrapper();
             bootstrapper.Run();
             System.Collections.Generic.IList<string> messages = bootstrapper.BaseLogger.Messages;
 
@@ -432,7 +432,7 @@ namespace Prism.CastleWindsor.Wpf.Tests
         public void RunShouldLogAboutConfiguringModuleCatalog()
         {
             const string ExpectedMessageText = "Configuring module catalog.";
-            var bootstrapper = new DefaultUnityBootstrapper();
+            var bootstrapper = new DefaultCastleWindsorBootstrapper();
             bootstrapper.Run();
             System.Collections.Generic.IList<string> messages = bootstrapper.BaseLogger.Messages;
 
@@ -443,7 +443,7 @@ namespace Prism.CastleWindsor.Wpf.Tests
         public void RunShouldLogAboutCreatingTheContainer()
         {
             const string ExpectedMessageText = "Creating Unity container.";
-            var bootstrapper = new DefaultUnityBootstrapper();
+            var bootstrapper = new DefaultCastleWindsorBootstrapper();
             bootstrapper.Run();
             System.Collections.Generic.IList<string> messages = bootstrapper.BaseLogger.Messages;
 
@@ -454,7 +454,7 @@ namespace Prism.CastleWindsor.Wpf.Tests
         public void RunShouldLogAboutConfiguringContainer()
         {
             const string ExpectedMessageText = "Configuring the Unity container.";
-            var bootstrapper = new DefaultUnityBootstrapper();
+            var bootstrapper = new DefaultCastleWindsorBootstrapper();
             bootstrapper.Run();
             System.Collections.Generic.IList<string> messages = bootstrapper.BaseLogger.Messages;
 
@@ -465,7 +465,7 @@ namespace Prism.CastleWindsor.Wpf.Tests
         public void RunShouldLogAboutConfiguringViewModelLocator()
         {
             const string ExpectedMessageText = "Configuring the ViewModelLocator to use Unity.";
-            var bootstrapper = new DefaultUnityBootstrapper();
+            var bootstrapper = new DefaultCastleWindsorBootstrapper();
             bootstrapper.Run();
             System.Collections.Generic.IList<string> messages = bootstrapper.BaseLogger.Messages;
 
@@ -476,7 +476,7 @@ namespace Prism.CastleWindsor.Wpf.Tests
         public void RunShouldLogAboutConfiguringRegionAdapters()
         {
             const string ExpectedMessageText = "Configuring region adapters.";
-            var bootstrapper = new DefaultUnityBootstrapper();
+            var bootstrapper = new DefaultCastleWindsorBootstrapper();
             bootstrapper.Run();
             System.Collections.Generic.IList<string> messages = bootstrapper.BaseLogger.Messages;
 
@@ -487,7 +487,7 @@ namespace Prism.CastleWindsor.Wpf.Tests
         public void RunShouldLogAboutConfiguringRegionBehaviors()
         {
             const string ExpectedMessageText = "Configuring default region behaviors.";
-            var bootstrapper = new DefaultUnityBootstrapper();
+            var bootstrapper = new DefaultCastleWindsorBootstrapper();
             bootstrapper.Run();
             System.Collections.Generic.IList<string> messages = bootstrapper.BaseLogger.Messages;
 
@@ -498,7 +498,7 @@ namespace Prism.CastleWindsor.Wpf.Tests
         public void RunShouldLogAboutRegisteringFrameworkExceptionTypes()
         {
             const string ExpectedMessageText = "Registering Framework Exception Types.";
-            var bootstrapper = new DefaultUnityBootstrapper();
+            var bootstrapper = new DefaultCastleWindsorBootstrapper();
             bootstrapper.Run();
             System.Collections.Generic.IList<string> messages = bootstrapper.BaseLogger.Messages;
 
@@ -509,7 +509,7 @@ namespace Prism.CastleWindsor.Wpf.Tests
         public void RunShouldLogAboutCreatingTheShell()
         {
             const string ExpectedMessageText = "Creating the shell.";
-            var bootstrapper = new DefaultUnityBootstrapper();
+            var bootstrapper = new DefaultCastleWindsorBootstrapper();
             bootstrapper.Run();
             System.Collections.Generic.IList<string> messages = bootstrapper.BaseLogger.Messages;
 
@@ -520,7 +520,7 @@ namespace Prism.CastleWindsor.Wpf.Tests
         public void RunShouldLogAboutInitializingTheShellIfShellCreated()
         {
             const string ExpectedMessageText = "Initializing the shell.";
-            var bootstrapper = new DefaultUnityBootstrapper();
+            var bootstrapper = new DefaultCastleWindsorBootstrapper();
 
             bootstrapper.Run();
             System.Collections.Generic.IList<string> messages = bootstrapper.BaseLogger.Messages;
@@ -532,7 +532,7 @@ namespace Prism.CastleWindsor.Wpf.Tests
         public void RunShouldNotLogAboutInitializingTheShellIfShellIsNotCreated()
         {
             const string ExpectedMessageText = "Initializing shell";
-            var bootstrapper = new DefaultUnityBootstrapper { ShellObject = null };
+            var bootstrapper = new DefaultCastleWindsorBootstrapper { ShellObject = null };
 
             bootstrapper.Run();
             System.Collections.Generic.IList<string> messages = bootstrapper.BaseLogger.Messages;
@@ -544,7 +544,7 @@ namespace Prism.CastleWindsor.Wpf.Tests
         public void RunShouldLogAboutInitializingModules()
         {
             const string ExpectedMessageText = "Initializing modules.";
-            var bootstrapper = new DefaultUnityBootstrapper();
+            var bootstrapper = new DefaultCastleWindsorBootstrapper();
             bootstrapper.Run();
             System.Collections.Generic.IList<string> messages = bootstrapper.BaseLogger.Messages;
 
@@ -555,7 +555,7 @@ namespace Prism.CastleWindsor.Wpf.Tests
         public void RunShouldLogAboutRunCompleting()
         {
             const string ExpectedMessageText = "Bootstrapper sequence completed.";
-            var bootstrapper = new DefaultUnityBootstrapper();
+            var bootstrapper = new DefaultCastleWindsorBootstrapper();
             bootstrapper.Run();
             System.Collections.Generic.IList<string> messages = bootstrapper.BaseLogger.Messages;
 

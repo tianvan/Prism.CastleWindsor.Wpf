@@ -15,7 +15,7 @@ namespace Prism.CastleWindsor.Wpf.Tests
         [StaFact]
         public void ShouldLocateViewModelAndResolveWithContainer()
         {
-            var bootstrapper = new DefaultUnityBootstrapper();
+            var bootstrapper = new DefaultCastleWindsorBootstrapper();
             bootstrapper.Run();
 
             bootstrapper.BaseContainer.Register(Component.For<IService>().ImplementedBy<MockService>());

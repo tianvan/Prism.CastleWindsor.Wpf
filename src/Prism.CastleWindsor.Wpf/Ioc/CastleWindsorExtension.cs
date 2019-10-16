@@ -29,8 +29,15 @@ namespace Prism.CastleWindsor.Ioc
 
         public bool IsRegistered(Type type)
         {
-            var instance = Instance.Resolve(type);
-            return instance != null;
+            try
+            {
+                var instance = Instance.Resolve(type);
+                return true;
+            }
+            catch (Exception)
+            {
+                return false;
+            }
         }
 
         public bool IsRegistered(Type type, string name)

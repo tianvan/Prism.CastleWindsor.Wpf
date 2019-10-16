@@ -24,7 +24,14 @@ namespace Prism.CastleWindsor
 
         protected override object DoGetInstance(Type serviceType, string key)
         {
-            return _container.Resolve(key, serviceType);
+            try
+            {
+                return key == null ? _container.Resolve(serviceType) : _container.Resolve(key, serviceType);
+            }
+            catch (Exception)
+            {
+                return null;
+            }
         }
     }
 }

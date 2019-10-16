@@ -136,7 +136,7 @@
     <value>Configuring ServiceLocator singleton.</value>
   </data>
   <data name="ConfiguringUnityContainer" xml:space="preserve">
-    <value>Configuring the Unity container.</value>
+    <value>Configuring the CastleWindsor container.</value>
   </data>
   <data name="ConfiguringViewModelLocator" xml:space="preserve">
     <value>Configuring the ViewModelLocator to use Castle Windsor.</value>

@@ -115,7 +115,7 @@ namespace Prism.CastleWindsor.Properties {
         }
         
         /// <summary>
-        ///   查找类似 Configuring the Unity container. 的本地化字符串。
+        ///   查找类似 Configuring the CastleWindsor container. 的本地化字符串。
         /// </summary>
         internal static string ConfiguringUnityContainer {
             get {

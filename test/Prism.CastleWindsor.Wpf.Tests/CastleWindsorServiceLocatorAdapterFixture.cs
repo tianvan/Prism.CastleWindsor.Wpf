@@ -108,7 +108,7 @@ namespace Prism.CastleWindsor.Wpf.Tests
 
             public object Resolve(string key, Type service)
             {
-                throw new NotImplementedException();
+                return ResolveMethod();
             }
 
             public object Resolve(Type service)
