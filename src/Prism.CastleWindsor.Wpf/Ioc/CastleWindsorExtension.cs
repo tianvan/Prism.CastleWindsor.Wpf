@@ -34,7 +34,7 @@ namespace Prism.CastleWindsor.Ioc
                 var instance = Instance.Resolve(type);
                 return true;
             }
-            catch (Exception)
+            catch (ComponentNotFoundException)
             {
                 return false;
             }
